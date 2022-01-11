@@ -179,7 +179,8 @@ This is built in Crystal v1.3.0
 maybe you need `sudo` access
 
 - `crystal init app cr`
-- `crystal src/cr.cr`
+- `crystal src/cr.cr emacs`
+- `shards build`
 
 
 <br>

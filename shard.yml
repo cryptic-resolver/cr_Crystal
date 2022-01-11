@@ -10,7 +10,7 @@ dependencies:
     branch: master
 
 targets:
-  cryptic-resolver:
+  cr:
     main: src/cr.cr
 
 crystal: 1.3.0

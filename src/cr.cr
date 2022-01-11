@@ -187,8 +187,13 @@ def lookup(sheet, file, word)
   # This will display the word in its traditional form.
   # Then, all the keywords can be downcase.
 
-  info = dict[word].as(Hash) # Directly hash it
-  return false if info.nil?
+  # This is Crystal, we must handle Hash[a not existing key] error by hand
+  if dict.has_key?(word)
+    info = dict[word].as(Hash) # Directly hash it
+  else
+    return false
+  end
+
 
   # Warn user if the info is empty. For example:
   #   emacs = { }
@@ -200,7 +205,8 @@ def lookup(sheet, file, word)
 
   # Check whether it's a synonym for anther word
   # If yes, we should lookup into this sheet again, but maybe with a different file
-  if same = info["same"].as(String)
+  if info.has_key?("same")
+    same = info["same"].as(String)
     pp_sheet(sheet)
     # point out to user, this is a jump
     puts blue(bold(word)) + " redirects to " + blue(bold(same))
@@ -268,6 +274,8 @@ def solve_word(word)
     index = "0123456789"
   end
 
+  puts word,index # DEBUG
+
   # Default's first should be 1st to consider
   first_sheet = "cryptic_" + CRYPTIC_DEFAULT_SHEETS.keys[0].to_s # When Ruby3, We can use SHEETS.key(0)
 
@@ -324,14 +332,16 @@ end
 # main: CLI Handling
 ####################
 
-if ARGV.size > 1
+puts ARGV.size  # DEBUG
+
+if ARGV.size >= 1
   arg = ARGV.shift
 else
   arg = ""
 end
 
 case arg
-when ""            then (help || add_default_sheet_if_none_exist)
+when ""             then (help || add_default_sheet_if_none_exist)
 when "-h"           then help
 when "-u"           then update_sheets   ARGV.shift
 else
