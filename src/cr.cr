@@ -56,7 +56,8 @@ end
 def add_default_sheet_if_none_exist
   unless is_there_any_sheet?
     puts "cr: Adding default sheets..."
-    CRYPTIC_DEFAULT_SHEETS.values.each do |sheet|
+    CRYPTIC_DEFAULT_SHEETS.each do |name,sheet|
+      puts "cr: Pulling cryptic_#{name}..."
       `git -C #{CRYPTIC_RESOLVER_HOME} clone #{sheet} -q`
     end
     puts "cr: Add done"
@@ -282,7 +283,7 @@ def solve_word(word)
     index = "0123456789"
   end
 
-  puts word,index # DEBUG
+  # puts word,index # DEBUG
 
   # Default's first should be 1st to consider
   first_sheet = "cryptic_" + CRYPTIC_DEFAULT_SHEETS.keys[0].to_s # When Ruby3, We can use SHEETS.key(0)
@@ -340,7 +341,7 @@ end
 # main: CLI Handling
 ####################
 
-puts ARGV.size  # DEBUG
+# puts ARGV.size  # DEBUG
 
 if ARGV.size >= 1
   arg = ARGV.shift

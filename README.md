@@ -32,13 +32,7 @@ Not only can it be used in the computer filed, but also you can use this to mana
 
 ## Install
 
-On Windows
-
-```bash
-scoop install "https://raw.githubusercontent.com/cryptic-resolver/cr_Crystal/master/install/cryptic-resolver.json"
-```
-
-On Linux or macOS
+On Linux
 ```bash
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/cryptic-resolver/cr_Crystal/master/install/i.sh)"
 ```
@@ -47,7 +41,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/cryptic-resolver/cr_Crys
 
 Or just manually install from the [releases](https://github.com/cryptic-resolver/cr_Crystal/releases) page.
 
-Tested well on `Windows 11` and `Ubuntu`.
+Tested well on `Ubuntu`.
 
 <br>
 
@@ -175,6 +169,8 @@ In one sheet, you should consider adding a subkey to differ each other like the 
 ## cr in Crystal development
 
 This is built in Crystal v1.3.0
+
+**Notice:** There is a bug in `crystal-community/toml.cr`, it can't parse a subkey using number as first char, leading to a exception. For example, run command `cr stl`, you will see it.
 
 maybe you need `sudo` access
 
