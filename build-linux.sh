@@ -3,7 +3,7 @@
 #   File          : build-linux.sh
 #   Authors       : ccmywish <ccmywish@qq.com>
 #   Created on    : <2022-1-11>
-#   Last modified : <2022-1-11>
+#   Last modified : <2022-1-12>
 #
 #   Build cr on Linux via Bash
 #   ---------------------------------------------------
@@ -28,3 +28,15 @@ fi
 
 mv ./bin/cr $binname
 echo "Generate Linux binary in ./bin"
+
+# Can't use $version in ''
+# awk '{sub("cr_ver=\"1.0.0\"","cr_ver=\"3.0.0\"")} 1' install/i-template.sh > install/i.sh
+
+ruby << EOF
+    a = File.read("./install/i-template.sh"); 
+    a.sub!("cr_ver=\"1.0.0\"","cr_ver=\"${version}\"");
+    File.write("./install/i.sh",a);
+EOF
+
+echo "Generate i.sh in install/"
+echo
