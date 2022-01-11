@@ -77,6 +77,7 @@ def update_sheets(sheet_repo)
 
     puts "cr: Update done"
   else
+    puts "cr: Adding new sheet..."
     `git -C #{CRYPTIC_RESOLVER_HOME} clone #{sheet_repo} -q`
     puts "cr: Add new sheet done"
   end
@@ -107,14 +108,21 @@ end
 #
 # @param info [Hash] the information of the given word (mapped to a keyword in TOML)
 def pp_info(info : Hash)
-  disp = info["disp"] || red("No name!")
-  puts "\n  #{disp}: #{info["desc"]}"
 
-  if full = info["full"]
-    print "\n  ",full,"\n"
+  if info.has_key?("disp")
+    disp = info["disp"]
+  else
+    disp = red("No name!")
   end
 
-  if see_also = info["see"].as(Array)
+  puts "\n  #{disp}: #{info["desc"]}"
+
+  if info.has_key?("full")
+    print "\n  ", info["full"], "\n"
+  end
+
+  if info.has_key?("see")
+    see_also = info["see"].as(Array)
     print "\n", purple("SEE ALSO ")
     see_also.each {|x| print underline(x),' '}
     puts
