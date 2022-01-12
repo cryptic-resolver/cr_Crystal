@@ -5,7 +5,7 @@
 #   Created on    : <2022-1-11>
 #   Last modified : <2022-1-12>
 #
-#   Build cr on Linux via Bash
+#   Build cr on Linux via Bash(and Ruby)
 #   ---------------------------------------------------
 
 echo "Building for Linux x64"
@@ -32,6 +32,10 @@ echo "Generate Linux binary in ./bin"
 # Can't use $version in ''
 # awk '{sub("cr_ver=\"1.0.0\"","cr_ver=\"3.0.0\"")} 1' install/i-template.sh > install/i.sh
 
+
+# Ruby accepts redirected(<<) accpet
+# same like  ` echo 'xxx' | ruby  `
+# 
 ruby << EOF
     a = File.read("./install/i-template.sh"); 
     a.sub!("cr_ver=\"1.0.0\"","cr_ver=\"${version}\"");
