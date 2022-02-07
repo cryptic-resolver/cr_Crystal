@@ -2,8 +2,6 @@
 
 **Cryptic Resolver in Crystal**
 
-
-[![word-count](https://img.shields.io/badge/Keywords%20Inlcuded-437-brightgreen)](#default-sheets)
 [![GitHub version](https://badge.fury.io/gh/cryptic-resolver%2Fcr_Crystal.svg)](https://badge.fury.io/gh/cryptic-resolver%2Fcr_Crystal)
 
 </div>
@@ -12,8 +10,6 @@ This command line tool `cr` is used to **record and explain cryptic commands, ac
 The effort is to study etymology and know of naming conventions.
 
 Not only can it be used in the computer filed, but also you can use this to manage your own knowledge base easily.
-
-- Currently we have **437** keywords explained in our default sheets.
 
 <br>
 
