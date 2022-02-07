@@ -4,7 +4,7 @@
 #  File          : cr.crystal
 #  Authors       : ccmywish <ccmywish@qq.com>
 #  Created on    : <2022-1-11>
-#  Last modified : <2022-1-11>
+#  Last modified : <2022-2-7>
 #
 #  This file is used to explain a CRyptic command
 #  or an acronym's real meaning in computer world or
@@ -23,7 +23,7 @@ CRYPTIC_DEFAULT_SHEETS = {
   medicine: "https://github.com/cryptic-resolver/cryptic_medicine.git"
 }
 
-CRYPTIC_VERSION = "1.0.0"
+CRYPTIC_VERSION = "1.1.0"
 
 
 ####################
@@ -329,10 +329,16 @@ def help
 cr: Cryptic Resolver version #{CRYPTIC_VERSION} in Crystal
 
 usage:
+  cr -v                     => print version
   cr -h                     => print this help
   cr -u (xx.com//repo.git)  => update default sheet or add sheet from a git repo
   cr emacs                  => Edit macros: a feature-rich editor
 HELP
+end
+
+
+def print_version
+  puts "cr: Cryptic Resolver version #{CRYPTIC_VERSION} in Crystal"
 end
 
 
@@ -352,6 +358,7 @@ end
 case arg
 when ""             then (help || add_default_sheet_if_none_exist)
 when "-h"           then help
+when "-v"           then print_version
 when "-u"           then update_sheets   ARGV.shift
 else
   solve_word arg
